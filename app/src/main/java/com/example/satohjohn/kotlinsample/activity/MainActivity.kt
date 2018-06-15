@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Example of a call to a native method
-        test_text.text = testJNI("yaa")
+        test_text.text = testJNI("yamaken")
 
         sample_text.setOnClickListener { view ->
             startActivity(Intent(this, TestActivity::class.java))

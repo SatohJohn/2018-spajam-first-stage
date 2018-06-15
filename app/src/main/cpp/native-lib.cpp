@@ -22,7 +22,7 @@ extern "C" {
         char buf[256];
         const char* src = env->GetStringUTFChars(word, 0);
         strcpy(buf, src);
-        strcat(buf, "fuga");
+        strcat(buf, "spajam^^");
         env->ReleaseStringUTFChars(word, src);
 
         return env -> NewStringUTF(buf) ;
