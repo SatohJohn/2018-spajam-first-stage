@@ -10,5 +10,13 @@
         android:id="@+id/movie_loader_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="動画を再生する画面" />
+        android:text="動画を再生する画面"
+        android:background="#000"
+        />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </android.support.design.widget.CoordinatorLayout>

@@ -22,6 +22,7 @@ class TopActivity : AppCompatActivity() {
             startActivity(Intent(this, MusicSelectorActivity::class.java))
         })
         (findViewById<View>(R.id.movie_loader_activity_button) as Button).setOnClickListener({
+
             startActivity(Intent(this, MovieLoaderActivity::class.java))
         })
 
