@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
         }
     }
 
+    var beforePosition: Int = -1
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return event.run {
             this?.let {
@@ -82,7 +84,6 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
                 defaultDisplay?.getSize(point)
                 val position: Int = (it.getY() / (point.y / piano.size)).toInt()
                 Log.d("mainActivity", "point x: ${it.getX()}, y: ${it.getY()}, point: ${position}, ")
-                soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
 
                 if ((event as MotionEvent).action == MotionEvent.ACTION_DOWN) {
                     canvasView.onTouchDown(event.x, event.y)
@@ -94,6 +95,10 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
                     canvasView.onTouchUp(event.x, event.y)
                 }
 
+                if (position != beforePosition) {
+                    soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
+                    beforePosition = position
+                }
             }
 
             super.onTouchEvent(event)
