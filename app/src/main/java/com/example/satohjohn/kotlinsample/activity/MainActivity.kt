@@ -3,6 +3,7 @@ package com.example.satohjohn.kotlinsample.activity
 import android.content.Intent
 import android.graphics.Point
 import android.hardware.Camera
+import android.media.MediaPlayer
 import android.media.SoundPool
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 //            startActivity(Intent(this, TestActivity::class.java))
 //        }
 
-        dramTimer = Timer().schedule(1000, 500) {
+/*        dramTimer = Timer().schedule(1000, 500) {
             if (tomTiming >= 3) {
                 tomTiming = 0
                 soundPool.play(dram[1], 1.0f, 1.0f, 0, 0, 1.0f)
@@ -47,10 +48,14 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
                 soundPool.play(dram[0], 1.0f, 1.0f, 0, 0, 1.0f)
                 tomTiming++
             }
-        }
+        }*/
 
         dram = dram.map { soundPool.load(this, it, 1) }
         piano = piano.map { soundPool.load(this, it, 1) }
+        bgm = bgm.map { soundPool.load(this, it, 1) }
+
+        mediaPlayer = MediaPlayer.create(this.baseContext, R.raw.destiny)
+        (mediaPlayer as MediaPlayer).start()
 
         defaultDisplay = getWindowManager().getDefaultDisplay();
 
@@ -59,8 +64,11 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     private var tomTiming = 0
     private var dramTimer:TimerTask? = null
-    private val soundPool = SoundPool.Builder().setMaxStreams(7).build()
+    private val soundPool = SoundPool.Builder().setMaxStreams(10).build()
     private var defaultDisplay: Display? = null
+
+    // インタンスを生成
+    private var mediaPlayer : MediaPlayer? = null
 
     private var dram = listOf(
             R.raw.se_maoudamashii_instruments_drum2_tom1,
@@ -76,6 +84,9 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
             R.raw.se_maoudamashii_instruments_piano2_6ra,
             R.raw.se_maoudamashii_instruments_piano2_7si)
 
+    private var bgm = listOf(
+            R.raw.destiny
+    )
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -99,14 +110,13 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return event.run {
             this?.let {
-                //                val position: Int = (it.getY() % piano.size + 0.5f).toInt()
-                // windowの高さ / piano.size
                 val point = Point()
                 defaultDisplay?.getSize(point)
                 val position: Int = (it.getY() / (point.y / piano.size)).toInt()
                 Log.d("mainActivity", "point x: ${it.getX()}, y: ${it.getY()}, point: ${position}, ")
 
                 if ((event as MotionEvent).action == MotionEvent.ACTION_DOWN) {
+                    soundPool.play(bgm[0], 1.0f, 1.0f, 0, 0, 1.0f)
                     canvasView.onTouchDown(event.x, event.y)
                 }
                 else if ((event as MotionEvent).action == MotionEvent.ACTION_MOVE) {
@@ -118,7 +128,7 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
                 val current = System.currentTimeMillis()
                 if (current - prevTimeMillis > 100) {
-                    soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
+                    soundPool.play(piano[position], 0.1f, 0.1f, 0, 0, 1.0f)
                     prevTimeMillis = current
                 }
 //                if (position != beforePosition) {
@@ -204,6 +214,10 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
     override fun onPause() {
         dramTimer?.cancel()
         dramTimer = null
+        if (mediaPlayer?.isPlaying == true) {
+            mediaPlayer?.stop()
+            mediaPlayer?.release()
+        }
         super.onPause()
     }
 
