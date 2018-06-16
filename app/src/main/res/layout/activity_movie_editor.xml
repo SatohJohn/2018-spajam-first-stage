@@ -12,4 +12,12 @@
         android:text="再生する"
         tools:layout_editor_absoluteX="78dp"
         tools:layout_editor_absoluteY="139dp" />
+
+    <Button
+        android:id="@+id/movie_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="保存する"
+        tools:layout_editor_absoluteX="220dp"
+        tools:layout_editor_absoluteY="139dp" />
 </android.support.constraint.ConstraintLayout>
