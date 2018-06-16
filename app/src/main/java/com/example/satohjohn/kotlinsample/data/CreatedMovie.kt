@@ -9,9 +9,7 @@ data class CreatedMovie (
         @JsonProperty("imagePath")
         val imagePath: String,
         @JsonProperty("musicId")
-        val musicId: Int,
-        @JsonProperty("registeredDate")
-        val registeredDate: Date = Date()
+        val musicId: Int
 )
 
 data class Stamp(
