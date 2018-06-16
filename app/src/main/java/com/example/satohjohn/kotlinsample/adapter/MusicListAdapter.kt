@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.satohjohn.kotlinsample.R
+import com.example.satohjohn.kotlinsample.data.Music
 
 class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapter() {
 
@@ -46,11 +47,6 @@ class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapt
     override fun getCount(): Int {
         return musicList.size
     }
-
-    data class Music(
-            val name: String,
-            val resourceId: Int
-    )
 
     class MusicHolder(
             val nameView: TextView)

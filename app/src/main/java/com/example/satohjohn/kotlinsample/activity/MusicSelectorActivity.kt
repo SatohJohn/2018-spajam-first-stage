@@ -7,6 +7,7 @@ import android.widget.ListView
 import com.example.satohjohn.kotlinsample.R
 import com.example.satohjohn.kotlinsample.adapter.MusicListAdapter
 import android.content.Intent
+import com.example.satohjohn.kotlinsample.data.Music
 
 class MusicSelectorActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +16,9 @@ class MusicSelectorActivity: AppCompatActivity() {
         setContentView(R.layout.activity_music_selector)
 
         val musicList = listOf(
-                MusicListAdapter.Music("運命", R.raw.destiny),
-                MusicListAdapter.Music("やあ", R.raw.destiny),
-                MusicListAdapter.Music("hoge", R.raw.destiny)
+                Music("運命", R.raw.destiny),
+                Music("やあ", R.raw.destiny),
+                Music("hoge", R.raw.destiny)
         )
         val listView: ListView = findViewById(R.id.music_list) as ListView
         listView.adapter = MusicListAdapter(this, musicList)
