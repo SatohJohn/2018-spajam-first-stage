@@ -48,7 +48,8 @@ class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapt
     }
 
     data class Music(
-            val name: String
+            val name: String,
+            val resourceId: Int
     )
 
     class MusicHolder(
