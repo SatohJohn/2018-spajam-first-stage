@@ -16,6 +16,7 @@ import com.example.satohjohn.kotlinsample.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -82,8 +83,12 @@ class MainActivity : AppCompatActivity() {
                 val point = Point()
                 defaultDisplay?.getSize(point)
                 val position: Int = (it.getY() / (point.y / piano.size)).toInt()
+                //val positionXRate =(it.getX() / (point.x));
+                //val positionXRate =(abs(it.getX() - (point.x/2.0f))/(point.x/2.0f));
+                val positionXRate =1.0f-(abs(it.getX() - (point.x/2.0f))/(point.x/2.0f));
                 Log.d("mainActivity", "point x: ${it.getX()}, y: ${it.getY()}, point: ${position}, ")
-                soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
+                soundPool.play(piano[position], 1.0f, 1.0f,
+                        0, 0,1.5f*positionXRate+0.5f)
             }
 
             super.onTouchEvent(event)
