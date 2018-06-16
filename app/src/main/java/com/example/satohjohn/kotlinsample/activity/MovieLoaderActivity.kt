@@ -22,21 +22,6 @@ class MovieLoaderActivity : AppCompatActivity() {
         Log.d("Activity", "on create")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_loader)
-        val intent: Intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "image/*"
-            addCategory(Intent.CATEGORY_OPENABLE)
-        }
-        startActivityForResult(intent, 6542)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 6542) {
-            if (resultCode != Activity.RESULT_OK || data == null) {
-                return
-            }
-
-            imageView.setImageURI(data.data)
-            Log.d("Activity", "ここまできた")
 
         Handler(mainLooper).postDelayed({
 
@@ -52,8 +37,19 @@ class MovieLoaderActivity : AppCompatActivity() {
             }
         },200)
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 6542) {
+            if (resultCode != Activity.RESULT_OK || data == null) {
+                return
+            }
+
+            imageView.setImageURI(data.data)
+            Log.d("Activity", "ここまできた")
+
+
         }
-
-
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

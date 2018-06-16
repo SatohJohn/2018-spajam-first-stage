@@ -15,7 +15,6 @@ import com.example.satohjohn.kotlinsample.data.CreatedMovie
 import com.example.satohjohn.kotlinsample.data.Stamp
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import kotlinx.android.synthetic.main.activity_movie_editor.*
-import kotlinx.android.synthetic.main.activity_movie_loader.*
 import java.util.*
 
 class MovieEditorActivity : AppCompatActivity() {
@@ -52,15 +51,19 @@ class MovieEditorActivity : AppCompatActivity() {
 
         Log.d("MovieEditor", "${shardPreferences.all}")
 
-        val intent: Intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "image/*"
-            addCategory(Intent.CATEGORY_OPENABLE)
-        }
-        startActivityForResult(intent, 6542)
+        backgroundImageView.setOnClickListener({
+            // 最初はカメラロールから持ってくる
+            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "image/*"
+                addCategory(Intent.CATEGORY_OPENABLE)
+            }
+            startActivityForResult(intent, 6542)
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 6542) {
+            Log.d("movieEditor", "${data}")
             if (resultCode != Activity.RESULT_OK || data == null) {
                 return
             }
