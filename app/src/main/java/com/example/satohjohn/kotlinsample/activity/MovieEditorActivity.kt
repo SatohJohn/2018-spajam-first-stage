@@ -1,6 +1,8 @@
 package com.example.satohjohn.kotlinsample.activity
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.media.SoundPool
 import android.os.Bundle
 import android.os.Environment
@@ -12,6 +14,8 @@ import com.example.satohjohn.kotlinsample.R
 import com.example.satohjohn.kotlinsample.data.CreatedMovie
 import com.example.satohjohn.kotlinsample.data.Stamp
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import kotlinx.android.synthetic.main.activity_movie_editor.*
+import kotlinx.android.synthetic.main.activity_movie_loader.*
 import java.util.*
 
 class MovieEditorActivity : AppCompatActivity() {
@@ -19,7 +23,6 @@ class MovieEditorActivity : AppCompatActivity() {
         Log.d("MovieEditor", "on create")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_editor)
-
         val musicId = intent.getIntExtra("rawId", R.raw.destiny)
         val resourceId = soundPool.load(this, musicId, 1)
         Log.d("MovieEditor", "${resourceId}")
@@ -48,6 +51,22 @@ class MovieEditorActivity : AppCompatActivity() {
         })
 
         Log.d("MovieEditor", "${shardPreferences.all}")
+
+        val intent: Intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+            addCategory(Intent.CATEGORY_OPENABLE)
+        }
+        startActivityForResult(intent, 6542)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 6542) {
+            if (resultCode != Activity.RESULT_OK || data == null) {
+                return
+            }
+            backgroundImageView.setImageURI(data.data)
+        }
+
     }
 
     private val soundPool = SoundPool.Builder().setMaxStreams(7).build()
