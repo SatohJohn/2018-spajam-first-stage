@@ -55,19 +55,19 @@ class MovieEditorActivity : AppCompatActivity() {
 
         testButton1.setOnClickListener({
             stampList.add(Stamp(
-                    "3mi",
+                    R.raw.se_maoudamashii_instruments_piano2_1do.toString(),
                     System.currentTimeMillis() - musicStartTime
             ))
         })
         testButton2.setOnClickListener({
             stampList.add(Stamp(
-                    "2re",
+                    R.raw.se_maoudamashii_instruments_piano2_2re.toString(),
                     System.currentTimeMillis() - musicStartTime
             ))
         })
         testButton3.setOnClickListener({
             stampList.add(Stamp(
-                    "1do",
+                    R.raw.se_maoudamashii_instruments_piano2_3mi.toString(),
                     System.currentTimeMillis() - musicStartTime
             ))
         })
@@ -75,7 +75,6 @@ class MovieEditorActivity : AppCompatActivity() {
         Log.d("MovieEditor", "${shardPreferences.all}")
 
         backgroundImageView.setOnClickListener({
-            // 最初はカメラロールから持ってくる
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = "image/*"
                 addCategory(Intent.CATEGORY_OPENABLE)
@@ -94,7 +93,8 @@ class MovieEditorActivity : AppCompatActivity() {
             if (resultCode != Activity.RESULT_OK || data == null) {
                 return
             }
-            backgroundImageUrl = data.data.path
+            backgroundImageUrl = "${data.data}"
+            Log.d(this::class.java.simpleName, "${data.data}")
             backgroundImageView.setImageURI(data.data)
         }
 

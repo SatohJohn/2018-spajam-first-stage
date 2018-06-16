@@ -17,12 +17,11 @@
             android:layout_height="217dp"
             app:srcCompat="@android:drawable/arrow_down_float" />
 
-        <VideoView
-            android:id="@+id/videoView"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/movie_loader_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_anchor="@+id/videoView"
-            app:layout_anchorGravity="bottom|center" />
+            android:text="再生する" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
