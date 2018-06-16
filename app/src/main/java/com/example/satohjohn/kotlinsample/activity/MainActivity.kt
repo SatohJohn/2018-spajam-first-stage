@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 //            startActivity(Intent(this, TestActivity::class.java))
 //        }
 
-        Timer().schedule(1000, 500) {
+        dramTimer = Timer().schedule(1000, 500) {
             if (tomTiming >= 3) {
                 tomTiming = 0
                 soundPool.play(dram[1], 1.0f, 1.0f, 0, 0, 1.0f)
@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
     }
 
     private var tomTiming = 0
+    private var dramTimer:TimerTask? = null
     private val soundPool = SoundPool.Builder().setMaxStreams(7).build()
     private var defaultDisplay: Display? = null
 
@@ -198,6 +199,12 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
             Log.e("surfaceCreated", "Failed to init camera preview.", e)
         }
 
+    }
+
+    override fun onPause() {
+        dramTimer?.cancel()
+        dramTimer = null
+        super.onPause()
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {}
