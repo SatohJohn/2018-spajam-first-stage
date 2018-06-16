@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.satohjohn.kotlinsample.R
 import com.example.satohjohn.kotlinsample.data.Music
@@ -26,12 +27,12 @@ class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapt
             v = inflater.inflate(R.layout.music_list, null)
             holder = v?.run {
                 MusicHolder(
-                        this.findViewById(R.id.music_name_id) as TextView)
+                        this.findViewById(R.id.music_icon_image) as ImageView)
             }
             v?.tag = holder
         }
         holder?.let {
-            it.nameView.text = musicList.get(position).name
+            it.iconView.setImageResource(musicList.get(position).imageResource)
         }
         return v as View
     }
@@ -49,5 +50,5 @@ class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapt
     }
 
     class MusicHolder(
-            val nameView: TextView)
+            val iconView: ImageView)
 }

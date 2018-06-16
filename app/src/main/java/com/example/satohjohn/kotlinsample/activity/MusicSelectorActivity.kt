@@ -16,9 +16,9 @@ class MusicSelectorActivity: AppCompatActivity() {
         setContentView(R.layout.activity_music_selector)
 
         val musicList = listOf(
-                Music("運命", R.raw.destiny),
-                Music("やあ", R.raw.destiny),
-                Music("hoge", R.raw.destiny)
+                Music("運命", R.raw.destiny, R.drawable.music_btn_01_on),
+                Music("やあ", R.raw.destiny, R.drawable.music_btn_01_on),
+                Music("hoge", R.raw.destiny, R.drawable.music_btn_01_on)
         )
         val listView: ListView = findViewById(R.id.music_list) as ListView
         listView.adapter = MusicListAdapter(this, musicList)

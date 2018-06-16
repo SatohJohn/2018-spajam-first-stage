@@ -9,41 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/hensyu_bk"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/backgroundImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="205dp">
-
-            <Button
-                android:id="@+id/movie_save_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="保存する"
-                tools:layout_editor_absoluteX="220dp"
-                tools:layout_editor_absoluteY="139dp" />
-
-            <Button
-                android:id="@+id/sample_start_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="再生する"
-                tools:layout_editor_absoluteX="78dp"
-                tools:layout_editor_absoluteY="139dp" />
-
-        </LinearLayout>
+            android:layout_weight="1"
+            app:srcCompat="@drawable/hensyu_choose" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,6 +46,33 @@
                 android:layout_weight="1"
                 android:text="test3" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="205dp">
+
+            <Button
+                android:id="@+id/movie_save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/hensyu_btn_hozon_01"
+                app:srcCompat="@drawable/hensyu_btn_hozon_01" />
+
+            <Button
+                android:id="@+id/sample_start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/hensyu_btn_rokuga_01"
+                app:srcCompat="@drawable/hensyu_btn_rokuga_01" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

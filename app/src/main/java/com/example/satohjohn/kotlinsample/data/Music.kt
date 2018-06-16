@@ -2,5 +2,6 @@ package com.example.satohjohn.kotlinsample.data
 
 data class Music(
         val name: String,
-        val resourceId: Int
+        val resourceId: Int,
+        val imageResource: Int
 )

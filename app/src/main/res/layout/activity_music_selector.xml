@@ -11,17 +11,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/music_selector_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="音楽を再生する" />
-
-        <view class="android.support.v7.app.AlertController$RecycleListView"
+        <view
             android:id="@+id/music_list"
+            class="android.support.v7.app.AlertController$RecycleListView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </view>
+            android:layout_height="wrap_content"></view>
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
