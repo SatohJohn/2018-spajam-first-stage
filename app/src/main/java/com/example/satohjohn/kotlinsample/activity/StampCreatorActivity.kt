@@ -9,6 +9,7 @@ import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.Environment
 import android.provider.ContactsContract
+import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.util.Log
@@ -140,14 +141,16 @@ class StampCreatorActivity : AppCompatActivity(), SurfaceHolder.Callback {
         val cameraRotationOffset = camInfo.orientation
         val displayRotation = getDisplayRotation(camInfo, cameraRotationOffset, degrees)
 
-        var profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
+        var profile = CamcorderProfile.get(CamcorderProfile.QUALITY_720P)
+        profile.audioCodec = MediaRecorder.AudioEncoder.AMR_NB
+        profile.videoCodec = MediaRecorder.VideoEncoder.H264
         profile.fileFormat = MediaRecorder.OutputFormat.MPEG_4
 
         mrec!!.setOrientationHint(displayRotation)
         mrec!!.setProfile(profile)
 
         val date = Date()
-        val sdf1 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val sdf1 = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss")
 
         val file_name = sdf1.format(date) + ".mp4"
 
