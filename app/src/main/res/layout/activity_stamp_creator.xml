@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.StampCreatorActivity">
 
 
-    <TextView
-        android:id="@+id/stamp_creator_text"
+    <SurfaceView
+        android:id="@+id/surface_camera"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="スタンプ作成画面" />
-</android.support.design.widget.CoordinatorLayout>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:text="Button" />
+</LinearLayout>
