@@ -6,9 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".activity.MusicSelectorActivity">
 
-    <TextView
-        android:id="@+id/music_selector_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="音楽を再生する" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/music_selector_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="音楽を再生する" />
+
+        <view class="android.support.v7.app.AlertController$RecycleListView"
+            android:id="@+id/music_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </view>
+
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
