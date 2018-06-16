@@ -4,24 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/myotoneta_bk"
     tools:context=".activity.MovieSelectorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:overScrollMode="ifContentScrolls"
+        android:visibility="visible">
 
-        <TextView
-            android:id="@+id/movie_selector_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="動画を再生する" />
-
-        <view class="android.support.v7.app.AlertController$RecycleListView"
+        <view
             android:id="@+id/movie_list"
+            class="android.support.v7.app.AlertController$RecycleListView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </view>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></view>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/back_home_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/myotoneta_btn_home" />
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/music_btn_next_01" />
+        </LinearLayout>
 
     </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
