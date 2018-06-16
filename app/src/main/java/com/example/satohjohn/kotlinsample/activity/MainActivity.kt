@@ -15,6 +15,8 @@ import com.example.satohjohn.kotlinsample.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.io.IOException
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
@@ -37,6 +39,17 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 //            startActivity(Intent(this, TestActivity::class.java))
 //        }
 
+        Timer().schedule(1000, 500) {
+            if (tomTiming >= 3) {
+                tomTiming = 0
+                soundPool.play(dram[1], 1.0f, 1.0f, 0, 0, 1.0f)
+            } else {
+                soundPool.play(dram[0], 1.0f, 1.0f, 0, 0, 1.0f)
+                tomTiming++
+            }
+        }
+
+        dram = dram.map { soundPool.load(this, it, 1) }
         piano = piano.map { soundPool.load(this, it, 1) }
 
         defaultDisplay = getWindowManager().getDefaultDisplay();
@@ -44,9 +57,14 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
         Log.d("mainActivity", "end on create")
     }
 
+    private var tomTiming = 0
     private val soundPool = SoundPool.Builder().setMaxStreams(7).build()
     private var defaultDisplay: Display? = null
 
+    private var dram = listOf(
+            R.raw.se_maoudamashii_instruments_drum2_tom1,
+            R.raw.se_maoudamashii_instruments_drum2_snare
+    )
 
     private var piano = listOf(
             R.raw.se_maoudamashii_instruments_piano2_1do,
@@ -174,8 +192,8 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     override fun surfaceCreated(holder: SurfaceHolder) {
         try {
-            camera!!.setPreviewDisplay(holder)
-            camera!!.startPreview()
+            camera?.setPreviewDisplay(holder)
+            camera?.startPreview()
         } catch (e: IOException) {
             Log.e("surfaceCreated", "Failed to init camera preview.", e)
         }
