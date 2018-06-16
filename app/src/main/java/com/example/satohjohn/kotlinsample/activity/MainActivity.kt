@@ -32,9 +32,10 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
         // Example of a call to a native method
         test_text.text = testJNI("yamaken")
 
-        sample_text.setOnClickListener { view ->
-            startActivity(Intent(this, TestActivity::class.java))
-        }
+        // activityを他に使いたくなればどうぞ
+//        sample_text.setOnClickListener { view ->
+//            startActivity(Intent(this, TestActivity::class.java))
+//        }
 
         piano = piano.map { soundPool.load(this, it, 1) }
 
@@ -74,6 +75,7 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
     }
 
     var beforePosition: Int = -1
+    var prevTimeMillis: Long = System.currentTimeMillis();
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return event.run {
@@ -95,10 +97,15 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
                     canvasView.onTouchUp(event.x, event.y)
                 }
 
-                if (position != beforePosition) {
+                val current = System.currentTimeMillis()
+                if (current - prevTimeMillis > 100) {
                     soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
-                    beforePosition = position
+                    prevTimeMillis = current
                 }
+//                if (position != beforePosition) {
+//                    soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
+//                    beforePosition = position
+//                }
             }
 
             super.onTouchEvent(event)
