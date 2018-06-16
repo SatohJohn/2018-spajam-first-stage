@@ -23,7 +23,7 @@ class TopActivity : AppCompatActivity() {
         })
         (findViewById<View>(R.id.movie_loader_activity_button) as Button).setOnClickListener({
 
-            startActivity(Intent(this, MovieLoaderActivity::class.java))
+            startActivity(Intent(this, MovieSelectorActivity::class.java))
         })
 
         Log.d("mainActivity", "end on create")

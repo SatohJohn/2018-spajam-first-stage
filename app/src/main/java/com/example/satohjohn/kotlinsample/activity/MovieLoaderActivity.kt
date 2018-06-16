@@ -1,6 +1,7 @@
 package com.example.satohjohn.kotlinsample.activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -15,6 +16,9 @@ import android.widget.ImageView
 import android.widget.MediaController
 import com.example.satohjohn.kotlinsample.R
 import com.example.satohjohn.kotlinsample.R.id.imageView
+import com.example.satohjohn.kotlinsample.data.CreatedMovie
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import kotlinx.android.synthetic.main.activity_movie_loader.*
 
 class MovieLoaderActivity : AppCompatActivity() {
@@ -22,20 +26,27 @@ class MovieLoaderActivity : AppCompatActivity() {
         Log.d("Activity", "on create")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_loader)
+        val dataJson = intent.getStringExtra("json")
+        val mapper = jacksonObjectMapper()
 
-        Handler(mainLooper).postDelayed({
+        //val paper = mapper.readValue<Paper>(jsonString)
+        val movie: CreatedMovie = mapper.readValue(dataJson)
 
-            var moviepath =Uri.parse( Environment.getExternalStorageDirectory().toString() + "/DCIM/100ANDRO/MOV_0034.mp4")
-            Log.d("Activity",moviepath.toString())
-            videoView.setVideoURI(moviepath)
-            videoView.setOnPreparedListener {
-                videoView.start()
-                videoView.setMediaController(MediaController(this))
-            }
-            videoView.setOnCompletionListener {
-                finish()
-            }
-        },200)
+        Log.d("activity", "${movie}")
+
+//        Handler(mainLooper).postDelayed({
+//
+//            var moviepath =Uri.parse( Environment.getExternalStorageDirectory().toString() + "/DCIM/100ANDRO/MOV_0034.mp4")
+//            Log.d("Activity",moviepath.toString())
+//            videoView.setVideoURI(moviepath)
+//            videoView.setOnPreparedListener {
+//                videoView.start()
+//                videoView.setMediaController(MediaController(this))
+//            }
+//            videoView.setOnCompletionListener {
+//                finish()
+//            }
+//        },200)
 
     }
 
@@ -47,8 +58,6 @@ class MovieLoaderActivity : AppCompatActivity() {
 
             imageView.setImageURI(data.data)
             Log.d("Activity", "ここまできた")
-
-
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

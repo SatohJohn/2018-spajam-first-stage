@@ -31,7 +31,7 @@ class MovieEditorActivity : AppCompatActivity() {
             musicStartTime = System.currentTimeMillis()
             soundPool.play(resourceId, 1.0f, 1.0f, 0, 0, 1.0f);
         })
-        val shardPreferences = this.getPreferences(Context.MODE_PRIVATE)
+        val shardPreferences = this.getSharedPreferences("savedMovie", Context.MODE_PRIVATE)
 
         (findViewById<View>(R.id.movie_save_button) as Button).setOnClickListener({
             if (backgroundImageUrl.isEmpty()) {
