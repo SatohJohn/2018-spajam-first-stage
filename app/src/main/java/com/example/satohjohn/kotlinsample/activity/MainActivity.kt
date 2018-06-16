@@ -2,22 +2,21 @@ package com.example.satohjohn.kotlinsample.activity
 
 import android.content.Intent
 import android.graphics.Point
+import android.hardware.Camera
 import android.media.SoundPool
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.Display
-import android.view.Menu
-import android.view.MenuItem
-import android.view.MotionEvent
+import android.view.*
 import android.widget.Button
 import com.example.satohjohn.kotlinsample.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("mainActivity", "on create")
@@ -84,6 +83,17 @@ class MainActivity : AppCompatActivity() {
                 val position: Int = (it.getY() / (point.y / piano.size)).toInt()
                 Log.d("mainActivity", "point x: ${it.getX()}, y: ${it.getY()}, point: ${position}, ")
                 soundPool.play(piano[position], 1.0f, 1.0f, 0, 0, 1.0f)
+
+                if ((event as MotionEvent).action == MotionEvent.ACTION_DOWN) {
+                    canvasView.onTouchDown(event.x, event.y)
+                }
+                else if ((event as MotionEvent).action == MotionEvent.ACTION_MOVE) {
+                    canvasView.onTouchMove(event.x, event.y)
+                }
+                else if ((event as MotionEvent).action == MotionEvent.ACTION_UP) {
+                    canvasView.onTouchUp(event.x, event.y)
+                }
+
             }
 
             super.onTouchEvent(event)
@@ -111,4 +121,56 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    // Camera2 API が推奨されているが、コードが多くなるらしいので今回はこれを利用する。
+    private var camera: Camera? = null
+
+    override fun onResume() {
+        super.onResume()
+
+        camera = getBackCamera()
+        camera!!.setDisplayOrientation(90)
+
+        val surfaceView = findViewById(R.id.surfaceView) as SurfaceView
+        val holder = surfaceView.holder
+        holder.addCallback(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (camera != null) {
+            camera!!.release()
+            camera = null
+        }
+    }
+
+    /**
+     * バックカメラ（外向きのカメラ）を取得する
+     *
+     * @return
+     */
+    private fun getBackCamera(): Camera? {
+        for (i in 0 until Camera.getNumberOfCameras()) {
+            val cameraInfo = Camera.CameraInfo()
+            Camera.getCameraInfo(i, cameraInfo)
+            if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                return Camera.open(i)
+            }
+        }
+        return null
+    }
+
+    override fun surfaceCreated(holder: SurfaceHolder) {
+        try {
+            camera!!.setPreviewDisplay(holder)
+            camera!!.startPreview()
+        } catch (e: IOException) {
+            Log.e("surfaceCreated", "Failed to init camera preview.", e)
+        }
+
+    }
+
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {}
+
+    override fun surfaceDestroyed(holder: SurfaceHolder) {}
 }

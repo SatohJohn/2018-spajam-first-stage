@@ -30,4 +30,19 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <com.example.satohjohn.kotlinsample.activity.DrawSurfaceView
+        android:id="@+id/canvasView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/undoBtn"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:saveEnabled="false"
+        android:visibility="visible" />
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.design.widget.CoordinatorLayout>
