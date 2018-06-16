@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TestActivity">
+    tools:context=".activity.MusicSelectorActivity">
 
-    <include layout="@layout/content_test" />
-
+    <TextView
+        android:id="@+id/music_selector_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="音楽を再生する" />
 </android.support.design.widget.CoordinatorLayout>
