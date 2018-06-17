@@ -32,14 +32,19 @@ class MovieEditorActivity : AppCompatActivity() {
         val resourceId = soundPool.load(this, musicId, 1)
         Log.d("MovieEditor", "${resourceId}")
 
-        (findViewById<View>(R.id.sample_start_button) as Button).setOnClickListener({
+        return_home_button.setOnClickListener({
+            stampList.clear()
+            startActivity(Intent(this, TopActivity::class.java))
+        })
+
+        sample_start_button.setOnClickListener({
             stampList.clear()
             musicStartTime = System.currentTimeMillis()
             soundPool.play(resourceId, 1.0f, 1.0f, 0, 0, 1.0f);
         })
         val shardPreferences = this.getSharedPreferences("savedMovie", Context.MODE_PRIVATE)
 
-        (findViewById<View>(R.id.movie_save_button) as Button).setOnClickListener({
+        movie_save_button.setOnClickListener({
             if (backgroundImageUrl.isEmpty()) {
                 return@setOnClickListener
             }
