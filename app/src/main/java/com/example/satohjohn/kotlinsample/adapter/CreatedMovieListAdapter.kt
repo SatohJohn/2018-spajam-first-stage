@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,7 +15,7 @@ import com.example.satohjohn.kotlinsample.R
 import com.example.satohjohn.kotlinsample.data.CreatedMovie
 import java.io.File
 
-class CreatedMovieListAdapter(context: Context, var createdMovieList: List<CreatedMovie>) : BaseAdapter() {
+class CreatedMovieListAdapter(context: Context, var createdMovieList: List<CreatedMovie>) : ArrayAdapter<CreatedMovie>(context, 0, createdMovieList) {
 
     val inflater: LayoutInflater
     init {
@@ -44,7 +45,7 @@ class CreatedMovieListAdapter(context: Context, var createdMovieList: List<Creat
         return v as View
     }
 
-    override fun getItem(position: Int): Any {
+    override fun getItem(position: Int): CreatedMovie {
         return createdMovieList.get(position)
     }
 

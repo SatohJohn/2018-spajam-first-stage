@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ListView
 import com.example.satohjohn.kotlinsample.R
 import android.content.Intent
+import android.widget.GridView
 import com.example.satohjohn.kotlinsample.adapter.CreatedMovieListAdapter
 import com.example.satohjohn.kotlinsample.data.CreatedMovie
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -27,10 +28,10 @@ class MovieSelectorActivity: AppCompatActivity() {
         val movieList = savedMovieMap.entries.sortedBy { it.key }.map {
             mapper.readValue(it.value.toString()) as CreatedMovie
         }
-        val listView: ListView = findViewById(R.id.movie_list) as ListView
-        listView.adapter = CreatedMovieListAdapter(this, movieList)
+        val gridView: GridView = findViewById(R.id.movie_list) as GridView
+        gridView.adapter = CreatedMovieListAdapter(this, movieList)
 
-        listView.setOnItemClickListener {parent, view, position, id ->
+        gridView.setOnItemClickListener {parent, view, position, id ->
             val movie = movieList.get(position)
             val intent = Intent(this, MovieLoaderActivity::class.java)
             intent.putExtra("json", mapper.writeValueAsString(movie))
