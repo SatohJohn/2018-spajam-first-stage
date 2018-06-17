@@ -4,13 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.satohjohn.kotlinsample.R
+import com.example.satohjohn.kotlinsample.data.CreatedMovie
 import com.example.satohjohn.kotlinsample.data.Music
 
-class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapter() {
+class MusicListAdapter(context: Context, var musicList: List<Music>) : ArrayAdapter<Music>(context, 0, musicList)  {
 
     val inflater: LayoutInflater
     init {
@@ -37,7 +39,7 @@ class MusicListAdapter(context: Context, var musicList: List<Music>) : BaseAdapt
         return v as View
     }
 
-    override fun getItem(position: Int): Any {
+    override fun getItem(position: Int): Music {
         return musicList.get(position)
     }
 

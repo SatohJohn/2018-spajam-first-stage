@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activity.MusicSelectorActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/myotoneta_bk">
 
-        <view
+        <GridView
             android:id="@+id/music_list"
-            class="android.support.v7.app.AlertController$RecycleListView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></view>
+            android:layout_width="match_parent"
+            android:layout_height="356dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:numColumns="2" />
+    </RelativeLayout>
 
-    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
