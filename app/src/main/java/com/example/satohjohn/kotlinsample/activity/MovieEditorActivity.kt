@@ -88,8 +88,30 @@ class MovieEditorActivity : AppCompatActivity() {
             startActivityForResult(intent, 6542)
         })
 
-        var videoList = listOf(videoView1, videoView2, videoView3, videoView4, videoView5)
+        LoadStampMovie()
+    }
 
+    var musicStartTime: Long = System.currentTimeMillis()
+    val stampList: ArrayList<Stamp> = ArrayList()
+    var backgroundImageUrl: String = ""
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 6542) {
+            Log.d("movieEditor", "${data}")
+            if (resultCode != Activity.RESULT_OK || data == null) {
+                return
+            }
+            backgroundImageUrl = "${data.data}"
+            Log.d(this::class.java.simpleName, "${data.data}")
+            backgroundImageView.setImageURI(data.data)
+
+            LoadStampMovie()
+        }
+
+    }
+
+    private fun LoadStampMovie(){
+        var videoList = listOf(videoView1, videoView2, videoView3, videoView4, videoView5)
         var count = 0
         var files = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path).listFiles()
         for (i in 0 until files.size) {
@@ -107,23 +129,6 @@ class MovieEditorActivity : AppCompatActivity() {
                 })
             }
         }
-    }
-
-    var musicStartTime: Long = System.currentTimeMillis()
-    val stampList: ArrayList<Stamp> = ArrayList()
-    var backgroundImageUrl: String = ""
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 6542) {
-            Log.d("movieEditor", "${data}")
-            if (resultCode != Activity.RESULT_OK || data == null) {
-                return
-            }
-            backgroundImageUrl = "${data.data}"
-            Log.d(this::class.java.simpleName, "${data.data}")
-            backgroundImageView.setImageURI(data.data)
-        }
-
     }
 
     private val soundPool = SoundPool.Builder().setMaxStreams(7).build()
