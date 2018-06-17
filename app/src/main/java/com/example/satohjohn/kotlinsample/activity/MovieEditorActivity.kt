@@ -20,7 +20,7 @@ import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 import android.media.MediaPlayer.OnPreparedListener
-
+import android.widget.Toast
 
 
 class MovieEditorActivity : AppCompatActivity() {
@@ -62,6 +62,8 @@ class MovieEditorActivity : AppCompatActivity() {
             val shardPrefEditor = shardPreferences.edit()
             shardPrefEditor.putString("${Date()}", jsonString)
             shardPrefEditor.apply()
+
+            Toast.makeText(this.baseContext, "保存完了", "2".toInt()).show()
         })
 
         videoView1.setOnClickListener({
@@ -120,11 +122,10 @@ class MovieEditorActivity : AppCompatActivity() {
         var count = 0
         var files = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path).listFiles()
         for (i in 0 until files.size) {
-            if (files[i].isFile && files[i].name.endsWith(".mp4") && count < 4) {
+            if (files[i].isFile && files[i].name.endsWith(".mp4") && count <= 4) {
                 videoList[count].setVideoPath(files[i].path)
                 videoList[count].setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
                 videoList[count].start()
-                count++
 
                 videoList[count].setOnCompletionListener(MediaPlayer.OnCompletionListener {
                     // 先頭に戻す -> Repeat
@@ -132,6 +133,8 @@ class MovieEditorActivity : AppCompatActivity() {
                     // 再生開始
                     videoList[count].start()
                 })
+
+                count++
             }
         }
     }
