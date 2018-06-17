@@ -22,8 +22,7 @@ import kotlin.collections.ArrayList
 import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
 import android.widget.MediaController
-import android.widget.VideoView
-import kotlin.collections.HashMap
+import android.widget.Toast
 
 
 class MovieEditorActivity : AppCompatActivity() {
@@ -47,7 +46,7 @@ class MovieEditorActivity : AppCompatActivity() {
             soundPool.play(resourceId, 1.0f, 1.0f, 0, 0, 1.0f);
         })
         val shardPreferences = this.getSharedPreferences("savedMovie", Context.MODE_PRIVATE)
-        var stampUri:Uri? = null
+        var stampUri: Uri? = null
 
         movie_save_button.setOnClickListener({
             if (backgroundImageUrl.isEmpty()) {
@@ -67,6 +66,8 @@ class MovieEditorActivity : AppCompatActivity() {
             val shardPrefEditor = shardPreferences.edit()
             shardPrefEditor.putString("${Date()}", jsonString)
             shardPrefEditor.apply()
+
+            Toast.makeText(this.baseContext, "保存完了", "2".toInt()).show()
         })
 
         videoView1.setOnClickListener({
@@ -202,11 +203,10 @@ class MovieEditorActivity : AppCompatActivity() {
         var files = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path).listFiles()
         filePaths = files.map { it.path }
         for (i in 0 until files.size) {
-            if (files[i].isFile && files[i].name.endsWith(".mp4") && count < 4) {
+            if (files[i].isFile && files[i].name.endsWith(".mp4") && count <= 4) {
                 videoList[count].setVideoPath(files[i].path)
                 videoList[count].setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
                 videoList[count].start()
-                count++
 
                 videoList[count].setOnCompletionListener(MediaPlayer.OnCompletionListener {
                     // 先頭に戻す -> Repeat
@@ -214,6 +214,8 @@ class MovieEditorActivity : AppCompatActivity() {
                     // 再生開始
                     videoList[count].start()
                 })
+
+                count++
             }
         }
     }

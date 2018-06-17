@@ -9,9 +9,9 @@
 
     <FrameLayout
         android:layout_width="1080px"
-        android:layout_height="585dp"
-        android:scaleType="fitXY"
-        android:layout_weight="0.25">
+        android:layout_height="550dp"
+        android:layout_weight="0.25"
+        android:scaleType="fitXY">
 
         <ImageView
             android:id="@+id/backgroundImageView"
@@ -36,7 +36,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="100px"
         android:layout_marginRight="75px"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="0.55"
         android:background="@android:color/transparent">
 
@@ -51,7 +51,7 @@
             <VideoView
                 android:id="@+id/videoView1"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="7dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
@@ -59,7 +59,7 @@
             <VideoView
                 android:id="@+id/videoView2"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="7dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
@@ -68,7 +68,7 @@
             <VideoView
                 android:id="@+id/videoView3"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="7dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
@@ -76,7 +76,7 @@
             <VideoView
                 android:id="@+id/videoView4"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="7dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
@@ -84,7 +84,7 @@
             <VideoView
                 android:id="@+id/videoView5"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="7dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />

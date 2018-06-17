@@ -46,9 +46,9 @@ class StampCreatorActivity : AppCompatActivity(), SurfaceHolder.Callback {
         }
         save_button.setOnClickListener {
             if (isRecording == true) {
-                mrec?.stop();
-                mrec?.release();
-                mrec = null;
+                mrec?.stop()
+                mrec?.release()
+                mrec = null
 
                 isRecording = false
             } else {
@@ -60,9 +60,9 @@ class StampCreatorActivity : AppCompatActivity(), SurfaceHolder.Callback {
         // recording
         recording_button.setOnClickListener {
             if (isRecording == true) {
-                mrec?.stop();
-                mrec?.release();
-                mrec = null;
+                mrec?.stop()
+                mrec?.release()
+                mrec = null
 
                 isRecording = false
             } else {
