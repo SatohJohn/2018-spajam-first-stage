@@ -7,41 +7,52 @@
     android:background="@drawable/myotoneta_bk"
     tools:context=".activity.MovieSelectorActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:overScrollMode="ifContentScrolls"
-        android:visibility="visible">
+        android:layout_height="wrap_content">
 
-        <GridView
-            android:id="@+id/movie_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:numColumns="3" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:overScrollMode="ifContentScrolls"
+            android:visibility="visible">
+
+            <GridView
+                android:id="@+id/movie_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:layout_weight="1"
             android:gravity="bottom|end"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/back_home_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/myotoneta_btn_home" />
+                app:srcCompat="@drawable/hensyu_btn_home" />
 
-            <Button
+            <ImageView
                 android:id="@+id/next_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/music_btn_next_01" />
+                app:srcCompat="@drawable/music_btn_next_01" />
+
+            android:layout_alignParentBottom="true"
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
