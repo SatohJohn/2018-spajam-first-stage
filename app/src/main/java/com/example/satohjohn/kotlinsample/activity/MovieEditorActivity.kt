@@ -203,7 +203,7 @@ class MovieEditorActivity : AppCompatActivity() {
         var files = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path).listFiles()
         filePaths = files.map { it.path }
         for (i in 0 until files.size) {
-            if (files[i].isFile && files[i].name.endsWith(".mp4") && count <= 4) {
+            if (files[i].isFile && files[i].name.endsWith(".mp4") && count < videoList.size) {
                 videoList[count].setVideoPath(files[i].path)
                 videoList[count].setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
                 videoList[count].start()
