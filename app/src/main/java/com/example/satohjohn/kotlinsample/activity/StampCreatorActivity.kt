@@ -141,9 +141,9 @@ class StampCreatorActivity : AppCompatActivity(), SurfaceHolder.Callback {
         val cameraRotationOffset = camInfo.orientation
         val displayRotation = getDisplayRotation(camInfo, cameraRotationOffset, degrees)
 
-        var profile = CamcorderProfile.get(CamcorderProfile.QUALITY_720P)
-        profile.audioCodec = MediaRecorder.AudioEncoder.AMR_NB
-        profile.videoCodec = MediaRecorder.VideoEncoder.H264
+        var profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH)
+        profile.audioCodec = MediaRecorder.AudioEncoder.DEFAULT
+        profile.videoCodec = MediaRecorder.VideoEncoder.DEFAULT
         profile.fileFormat = MediaRecorder.OutputFormat.MPEG_4
 
         mrec!!.setOrientationHint(displayRotation)
