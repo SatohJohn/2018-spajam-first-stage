@@ -41,6 +41,7 @@ class MovieLoaderActivity : AppCompatActivity() {
         // 個々の処理は適当ですので、後動画に置き換えてください
         val resouces: List<Task> = movie.stampList.map {
             Task(it.time, soundPool.load(this, it.id.toInt(), 1))
+
         }
 //        Handler(mainLooper).postDelayed({
 //

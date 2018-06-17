@@ -20,7 +20,10 @@ import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 import android.media.MediaPlayer.OnPreparedListener
-
+import android.net.Uri
+import android.widget.MediaController
+import android.widget.VideoView
+import kotlin.collections.HashMap
 
 
 class MovieEditorActivity : AppCompatActivity() {
@@ -31,6 +34,7 @@ class MovieEditorActivity : AppCompatActivity() {
         val musicId = intent.getIntExtra("rawId", R.raw.destiny)
         val resourceId = soundPool.load(this, musicId, 1)
         Log.d("MovieEditor", "${resourceId}")
+        stampVideoView.visibility = View.INVISIBLE
 
         return_home_button.setOnClickListener({
             stampList.clear()
@@ -43,6 +47,7 @@ class MovieEditorActivity : AppCompatActivity() {
             soundPool.play(resourceId, 1.0f, 1.0f, 0, 0, 1.0f);
         })
         val shardPreferences = this.getSharedPreferences("savedMovie", Context.MODE_PRIVATE)
+        var stampUri:Uri? = null
 
         movie_save_button.setOnClickListener({
             if (backgroundImageUrl.isEmpty()) {
@@ -69,18 +74,92 @@ class MovieEditorActivity : AppCompatActivity() {
                     R.raw.se_maoudamashii_instruments_piano2_1do.toString(),
                     System.currentTimeMillis() - musicStartTime
             ))
+
+
+            stampVideoView.visibility = View.VISIBLE
+            stampVideoView.setVideoPath(filePaths[0])
+            stampVideoView.setOnPreparedListener {
+                stampVideoView.visibility = View.VISIBLE
+
+                stampVideoView.start()
+                stampVideoView.setMediaController(MediaController(this))
+            }
+            stampVideoView.setOnCompletionListener {
+            stampVideoView.visibility = View.INVISIBLE
+            }
+
         })
         videoView2.setOnClickListener({
             stampList.add(Stamp(
                     R.raw.se_maoudamashii_instruments_piano2_2re.toString(),
                     System.currentTimeMillis() - musicStartTime
             ))
+            stampVideoView.visibility = View.VISIBLE
+            stampVideoView.setVideoPath(filePaths[1])
+            stampVideoView.setOnPreparedListener {
+                stampVideoView.visibility = View.VISIBLE
+
+                stampVideoView.start()
+                stampVideoView.setMediaController(MediaController(this))
+            }
+            stampVideoView.setOnCompletionListener {
+                stampVideoView.visibility = View.INVISIBLE
+            }
+
         })
         videoView3.setOnClickListener({
             stampList.add(Stamp(
                     R.raw.se_maoudamashii_instruments_piano2_3mi.toString(),
                     System.currentTimeMillis() - musicStartTime
             ))
+            stampVideoView.visibility = View.VISIBLE
+            stampVideoView.setVideoPath(filePaths[2])
+            stampVideoView.setOnPreparedListener {
+                stampVideoView.visibility = View.VISIBLE
+
+                stampVideoView.start()
+                stampVideoView.setMediaController(MediaController(this))
+            }
+            stampVideoView.setOnCompletionListener {
+                stampVideoView.visibility = View.INVISIBLE
+            }
+
+        })
+        videoView4.setOnClickListener({
+            stampList.add(Stamp(
+                    R.raw.se_maoudamashii_instruments_piano2_3mi.toString(),
+                    System.currentTimeMillis() - musicStartTime
+            ))
+            stampVideoView.visibility = View.VISIBLE
+            stampVideoView.setVideoPath(filePaths[3])
+            stampVideoView.setOnPreparedListener {
+                stampVideoView.visibility = View.VISIBLE
+
+                stampVideoView.start()
+                stampVideoView.setMediaController(MediaController(this))
+            }
+            stampVideoView.setOnCompletionListener {
+                stampVideoView.visibility = View.INVISIBLE
+            }
+
+        })
+        videoView5.setOnClickListener({
+            stampList.add(Stamp(
+                    R.raw.se_maoudamashii_instruments_piano2_3mi.toString(),
+                    System.currentTimeMillis() - musicStartTime
+            ))
+            stampVideoView.visibility = View.VISIBLE
+            stampVideoView.setVideoPath(filePaths[4])
+            stampVideoView.setOnPreparedListener {
+                stampVideoView.visibility = View.VISIBLE
+
+                stampVideoView.start()
+                stampVideoView.setMediaController(MediaController(this))
+            }
+            stampVideoView.setOnCompletionListener {
+                stampVideoView.visibility = View.INVISIBLE
+            }
+
         })
 
         Log.d("MovieEditor", "${shardPreferences.all}")
@@ -115,10 +194,13 @@ class MovieEditorActivity : AppCompatActivity() {
 
     }
 
+    var filePaths: List<String> = emptyList()
+
     private fun LoadStampMovie(){
         var videoList = listOf(videoView1, videoView2, videoView3, videoView4, videoView5)
         var count = 0
         var files = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path).listFiles()
+        filePaths = files.map { it.path }
         for (i in 0 until files.size) {
             if (files[i].isFile && files[i].name.endsWith(".mp4") && count < 4) {
                 videoList[count].setVideoPath(files[i].path)
