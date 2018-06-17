@@ -3,6 +3,7 @@ package com.example.satohjohn.kotlinsample.activity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.media.SoundPool
 import android.os.Bundle
 import android.os.Environment
@@ -18,6 +19,9 @@ import kotlinx.android.synthetic.main.activity_movie_editor.*
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
+import android.media.MediaPlayer.OnPreparedListener
+
+
 
 class MovieEditorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,10 +90,21 @@ class MovieEditorActivity : AppCompatActivity() {
 
         var videoList = listOf(videoView1, videoView2, videoView3, videoView4, videoView5)
 
+        var count = 0
         var files = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path).listFiles()
         for (i in 0 until files.size) {
-            if (files[i].isFile && files[i].name.endsWith(".mp4") && i < 5) {
-                videoList[i].setVideoPath(files[i].path)
+            if (files[i].isFile && files[i].name.endsWith(".mp4") && count < 4) {
+                videoList[count].setVideoPath(files[i].path)
+                videoList[count].setOnPreparedListener(OnPreparedListener { mp -> mp.isLooping = true })
+                videoList[count].start()
+                count++
+
+                videoList[count].setOnCompletionListener(MediaPlayer.OnCompletionListener {
+                    // 先頭に戻す -> Repeat
+                    videoList[count].seekTo(0)
+                    // 再生開始
+                    videoList[count].start()
+                })
             }
         }
     }
