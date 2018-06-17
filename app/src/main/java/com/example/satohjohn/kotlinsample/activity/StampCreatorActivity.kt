@@ -1,6 +1,7 @@
 package com.example.satohjohn.kotlinsample.activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.hardware.Camera
 import android.hardware.Camera.CameraInfo
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.Toast
 import com.example.satohjohn.kotlinsample.R
 import kotlinx.android.synthetic.main.activity_stamp_creator.*
@@ -35,12 +37,28 @@ class StampCreatorActivity : AppCompatActivity(), SurfaceHolder.Callback {
     private val TAG = "VideoActivity"
     private var context: Context? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stamp_creator)
 
-        button.setOnClickListener {
+        imageView4.setOnClickListener {
+            startActivity(Intent(this, TopActivity::class.java))
+        }
+        save_button.setOnClickListener {
+            if (isRecording == true) {
+                mrec?.stop();
+                mrec?.release();
+                mrec = null;
+
+                isRecording = false
+            } else {
+                startRecording()
+
+                isRecording = true
+            }
+        }
+        // recording
+        recording_button.setOnClickListener {
             if (isRecording == true) {
                 mrec?.stop();
                 mrec?.release();
