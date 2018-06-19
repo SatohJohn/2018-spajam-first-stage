@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/hensyu_02"
+    android:background="@mipmap/hensyu_02"
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="350dp"
-        android:layout_height="550dp"
-        android:layout_weight="0.25"
-        android:scaleType="fitXY">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/backgroundImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_width="360dp"
+            android:layout_height="355dp"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/hensyu_choose" />
 
@@ -27,66 +24,58 @@
             android:layout_height="100dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="80dp"
+            android:layout_weight="1"
             android:paddingLeft="100dp"
             android:paddingTop="100dp" />
+
     </FrameLayout>
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="75px"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.55"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
         android:background="@android:color/transparent">
 
         <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:gravity="left"
             android:orientation="horizontal">
 
             <VideoView
                 android:id="@+id/videoView1"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="7dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
 
             <VideoView
                 android:id="@+id/videoView2"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="7dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:soundEffectsEnabled="false" />
 
             <VideoView
                 android:id="@+id/videoView3"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="7dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
 
             <VideoView
                 android:id="@+id/videoView4"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="7dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
 
             <VideoView
                 android:id="@+id/videoView5"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="7dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
 
@@ -94,9 +83,10 @@
     </HorizontalScrollView>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.55"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:background="@android:color/transparent"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="0dp"
@@ -105,7 +95,7 @@
         <Button
             android:id="@+id/return_home_button"
             android:layout_width="42dp"
-            android:layout_height="400px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/hensyu_btn_rokuga_01" />
@@ -113,7 +103,7 @@
         <Button
             android:id="@+id/sample_start_button"
             android:layout_width="30dp"
-            android:layout_height="400px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/hensyu_btn_rokuga_01" />
@@ -121,7 +111,7 @@
         <Button
             android:id="@+id/movie_save_button"
             android:layout_width="39dp"
-            android:layout_height="400px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent" />
 
