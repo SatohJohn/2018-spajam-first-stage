@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/myotoneta_bk">
+        android:background="@mipmap/myotoneta_bk">
 
         <GridView
             android:id="@+id/music_list"

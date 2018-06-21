@@ -30,6 +30,12 @@ android {
             path "CMakeLists.txt"
         }
     }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'com.android.support:support-v4:27.0.2'
+        }
+    }
 }
 
 dependencies {

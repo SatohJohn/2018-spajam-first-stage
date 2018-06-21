@@ -9,6 +9,6 @@
         android:id="@+id/music_icon_image"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
-        app:srcCompat="@drawable/music_btn_01_off" />
+        app:srcCompat="@mipmap/music_btn_01_off" />
 
 </LinearLayout>

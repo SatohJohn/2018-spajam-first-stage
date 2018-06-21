@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stamp_bk"
+    android:background="@mipmap/stamp_bk"
     android:orientation="vertical"
     tools:context=".activity.StampCreatorActivity">
 
@@ -35,21 +35,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/stamp_btn_home" />
+            app:srcCompat="@mipmap/stamp_btn_home" />
 
         <ImageView
             android:id="@+id/recording_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/stamp_btn_rokuga_01" />
+            app:srcCompat="@mipmap/stamp_btn_rokuga_01" />
 
         <ImageView
             android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/stamp_btn_hozon_01" />
+            app:srcCompat="@mipmap/stamp_btn_hozon_01" />
 
     </LinearLayout>
 </LinearLayout>

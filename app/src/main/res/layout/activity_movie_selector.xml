@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/myotoneta_bk"
+    android:background="@mipmap/myotoneta_bk"
     tools:context=".activity.MovieSelectorActivity">
 
     <RelativeLayout
@@ -41,14 +41,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/hensyu_btn_home" />
+                app:srcCompat="@mipmap/hensyu_btn_home" />
 
             <ImageView
                 android:id="@+id/next_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/music_btn_next_01" />
+                app:srcCompat="@mipmap/music_btn_next_01" />
 
             android:layout_alignParentBottom="true"
         </LinearLayout>

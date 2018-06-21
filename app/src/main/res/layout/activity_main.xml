@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="aaa"
         android:scaleType="fitCenter"
-        android:src="@drawable/top_bk"
+        android:src="@mipmap/top_bk"
         android:visibility="visible" />
 
     <LinearLayout
@@ -36,7 +36,7 @@
             android:layout_height="125dp"
             android:layout_marginLeft="70dp"
             android:layout_weight="1"
-            android:background="@drawable/top_btn_01" />
+            android:background="@mipmap/top_btn_01" />
 
         <Button
             android:id="@+id/music_selector_activity_button"
@@ -44,7 +44,7 @@
             android:layout_height="125dp"
             android:layout_marginLeft="70dp"
             android:layout_weight="1"
-            android:background="@drawable/top_btn_02" />
+            android:background="@mipmap/top_btn_02" />
 
         <Button
             android:id="@+id/movie_loader_activity_button"
@@ -52,7 +52,7 @@
             android:layout_height="125dp"
             android:layout_marginLeft="70dp"
             android:layout_weight="1"
-            android:background="@drawable/top_btn_03" />
+            android:background="@mipmap/top_btn_03" />
 
     </LinearLayout>
 

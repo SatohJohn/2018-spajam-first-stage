@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="570dp"
+    android:layout_gravity="top"
     android:background="@mipmap/hensyu_02"
     android:orientation="vertical">
 
@@ -16,7 +17,7 @@
             android:layout_width="360dp"
             android:layout_height="355dp"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/hensyu_choose" />
+            app:srcCompat="@mipmap/hensyu_choose" />
 
         <VideoView
             android:id="@+id/stampVideoView"
@@ -98,7 +99,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/hensyu_btn_rokuga_01" />
+            app:srcCompat="@mipmap/hensyu_btn_rokuga_01" />
 
         <Button
             android:id="@+id/sample_start_button"
@@ -106,7 +107,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/hensyu_btn_rokuga_01" />
+            app:srcCompat="@mipmap/hensyu_btn_rokuga_01" />
 
         <Button
             android:id="@+id/movie_save_button"
