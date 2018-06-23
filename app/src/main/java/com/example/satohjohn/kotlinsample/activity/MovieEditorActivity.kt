@@ -26,6 +26,9 @@ import android.widget.Toast
 
 
 class MovieEditorActivity : AppCompatActivity() {
+
+    val duration: Int = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MovieEditor", "on create")
         super.onCreate(savedInstanceState)
@@ -67,7 +70,7 @@ class MovieEditorActivity : AppCompatActivity() {
             shardPrefEditor.putString("${Date()}", jsonString)
             shardPrefEditor.apply()
 
-            Toast.makeText(this.baseContext, "保存完了", "2".toInt()).show()
+            Toast.makeText(this.baseContext, "保存完了", duration).show()
         })
 
         videoView1.setOnClickListener({
