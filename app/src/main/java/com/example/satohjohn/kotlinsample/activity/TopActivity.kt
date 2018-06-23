@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.example.satohjohn.kotlinsample.R
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class TopActivity : AppCompatActivity() {
@@ -22,14 +23,13 @@ class TopActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        (findViewById<View>(R.id.stamp_activity_button) as Button).setOnClickListener({
+        stamp_activity_button.setOnClickListener({
             startActivity(Intent(this, StampCreatorActivity::class.java))
         })
-        (findViewById<View>(R.id.music_selector_activity_button) as Button).setOnClickListener({
+        music_selector_activity_button.setOnClickListener({
             startActivity(Intent(this, MusicSelectorActivity::class.java))
         })
-        (findViewById<View>(R.id.movie_loader_activity_button) as Button).setOnClickListener({
-
+        movie_loader_activity_button.setOnClickListener({
             startActivity(Intent(this, MovieSelectorActivity::class.java))
         })
 
